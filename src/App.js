@@ -1,4 +1,5 @@
 import React from 'react'
+import Search from './Search'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 
