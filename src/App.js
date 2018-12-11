@@ -6,7 +6,9 @@ import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
-const books={'name': 'en', 'name': 'te', 'name': 'o'}
+const books=[{'id':'1', 'name': 'en'},
+              {'id':'2', 'name': 'te'},
+              {'id':'3', 'name': 'o'}];
 
 class BooksApp extends React.Component {
 
