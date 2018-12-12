@@ -14,6 +14,7 @@ class ListBooks extends Component{
 
   }
   render() {
+
     //this is the filtered array for all of the books that match the specific queries
     let showingBooks
     // if it's truthy filter out the books which match that specific pattern
@@ -26,6 +27,9 @@ class ListBooks extends Component{
       //if doesn't match: showingBooks is going to be what initially was
       showingBooks = this.props.books
     }
+    //Sorting books in alphabetical order 
+    showingBooks.sort(sortBy('name'))
+
     return (
   <div className='app'>
     <div className="search-books">
