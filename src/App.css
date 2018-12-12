@@ -197,6 +197,23 @@ button:active {
   font-size: 0.8em;
 }
 .book-remove {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url('./icons/cancel.svg');
+  background-size: 100% 100%;
+  border: 0;
+  color: black;
+  font-size: 0;
+  vertical-align: middle;
+  padding-left: 250px;
+  cursor: pointer;
+  outline: none;
+  /*
   padding-left: 20px;
   align-self: center;
   width: 32px;
@@ -210,4 +227,5 @@ button:active {
   vertical-align: middle;
   cursor: pointer;
   outline: none;
+  */
 }
