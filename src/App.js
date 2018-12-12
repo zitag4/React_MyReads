@@ -14,6 +14,15 @@ class BooksApp extends React.Component {
                   {'id':'3', 'name': 'o'}]
   }
 
+//removeBook method
+  removeBook = (book) => {
+    this.setState((state) => ({
+      //filter current books on the states
+      //remove where the state books ID does not equal the ID of the book that was cliked on
+      books: state.books.filter((b) => b.id !== book.id)
+    }))
+  }
+
   render() {
       return (
         <div>
