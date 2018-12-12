@@ -2,9 +2,37 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class ListBooks extends Component{
+  state = {
+    searchWord: ''
+  }
+
   render() {
 
     return (
+    <div className='app'>
+
+    <div className="search-books">
+      <div className="search-books-bar">
+        <button className="close-search">Close</button>
+        <div className="search-books-input-wrapper">
+          {/*in Value: The value of this input field has to be what this.state.searchWord is*/}
+          {/*in onChange: Whenever the input field changes update the searchWord*/}
+          <input type="text"
+          placeholder="Search by title or author"
+
+          value={this.state.searchWord}
+
+          //onChange={}
+          />
+
+        </div>
+      </div>
+      <div className="search-books-results">
+        <ol className="books-grid"></ol>
+      </div>
+    </div>
+
+
       <ol className='list-books'>
       {/*map through 'books' array and list the book's name*/}
         {this.props.books.map( (book) => (
@@ -36,6 +64,7 @@ class ListBooks extends Component{
           </li>
         ))}
       </ol>
+    </div>
     )
   }
 }
