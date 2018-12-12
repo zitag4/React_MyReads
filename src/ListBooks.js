@@ -25,10 +25,12 @@ class ListBooks extends Component{
             <div className="book-title">To Kill a Mockingbird</div>
             <div className="book-authors">Harper Lee</div>
           </div>
-          <button className='book-remove'>
+          //Invoke onDeleteBook when the button is clicked on
+          //iterating over whit specific book which is comming from .mop function
+          <button onClick={ () => this.props.onDeleteBook(book) } className='book-remove'>
             Remove
           </button>
-            
+
           </li>
         ))}
       </ol>

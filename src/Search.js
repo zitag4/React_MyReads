@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
+import MainPage from './MainPage'
+
 
 class Search extends Component {
   state = {
@@ -15,12 +17,16 @@ class Search extends Component {
         if(result.error)
           this.setState({ searchResult: [] })
         else
-          this.setState({ searchResult: result})
+          this.setState({ searchResult: result })
       })
     }
     else
       this.setState({ searchResult: [] })
   }
+
+//debugger
+
+
   render() {
     return (
 
@@ -45,6 +51,9 @@ class Search extends Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid"></ol>
+
+
+      )}
           </div>
         </div>
 

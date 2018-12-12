@@ -10,8 +10,8 @@ class BooksApp extends React.Component {
   //Add array to component state
   state = {
     books: [{'id':'1', 'name': 'en'},
-                  {'id':'2', 'name': 'te'},
-                  {'id':'3', 'name': 'o'}]
+            {'id':'2', 'name': 'te'},
+            {'id':'3', 'name': 'o'}]
   }
 
 //removeBook method
@@ -26,7 +26,9 @@ class BooksApp extends React.Component {
   render() {
       return (
         <div>
-          <ListBooks books={this.state.books}/>
+          <ListBooks onDeleteBook={this.removeBook}
+                     books={this.state.books}
+          />
 
           <Route
             exact path='/search'
