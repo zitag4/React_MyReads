@@ -25,7 +25,10 @@ class ListBooks extends Component{
             <div className="book-title">To Kill a Mockingbird</div>
             <div className="book-authors">Harper Lee</div>
           </div>
-
+          <button className='book-remove'>
+            Remove
+          </button>
+            
           </li>
         ))}
       </ol>
