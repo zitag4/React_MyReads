@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
 
 class ListBooks extends Component{
   state = {
@@ -12,7 +14,18 @@ class ListBooks extends Component{
 
   }
   render() {
-
+    //this is the filtered array for all of the books that match the specific queries
+    let showingBooks
+    // if it's truthy filter out the books which match that specific pattern
+    if (this.state.searchQuery) {
+      //will escapes any special character inside of query
+      const match = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
+      // filter the books where the name matches with regular expression and pass to showingBooks
+      showingBooks = this.props.books.filter( (book) => match.test(book.name))
+    } else {
+      //if doesn't match: showingBooks is going to be what initially was
+      showingBooks = this.props.books
+    }
     return (
   <div className='app'>
     <div className="search-books">
@@ -36,8 +49,8 @@ class ListBooks extends Component{
 
 
       <ol className='list-books'>
-      {/*map through 'books' array and list the book's name*/}
-        {this.props.books.map( (book) => (
+      {/*map through 'showingBooks' array and list the book's name*/}
+        {showingBooks.map( (book) => (
           <li key={book.id} className='list-book-item'>
           {/*Creating the list items (books)*/}
           <div className="book">
