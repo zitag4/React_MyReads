@@ -11,7 +11,6 @@ class ListBooks extends Component{
   //updating the searchQuery state
   updateSearchQuery = (query) => {
     this.setState({ searchQuery: query.trim() })
-
   }
   render() {
     //object destructuring: unpacking props and state into distinct variables
@@ -46,12 +45,20 @@ class ListBooks extends Component{
           //in onChange: Whenever the input field changes update the searchQuery
           onChange={ (event) => this.updateSearchQuery(event.target.value) }
           />
-
         </div>
+
       </div>
       <div className="search-books-results">
         <ol className="books-grid"></ol>
       </div>
+      //showing how many of the specific books it's showing out of the total
+      {showingBooks.length !== books.length && (
+        <div className='showing-books'>
+          <span>Now showing {showingBooks.length} of {books.length} total </span>
+          <button>Show all</button>
+        </div>
+      )}
+
     </div>
 
 
