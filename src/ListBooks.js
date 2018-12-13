@@ -12,6 +12,12 @@ class ListBooks extends Component{
   updateSearchQuery = (query) => {
     this.setState({ searchQuery: query.trim() })
   }
+
+  //reseting searchQuery which re-renders the app 
+  clearQuery = () => {
+    this.setState({searchQuery: ''})
+  }
+
   render() {
     //object destructuring: unpacking props and state into distinct variables
     const { books, onDeleteBook } = this.props
@@ -51,11 +57,11 @@ class ListBooks extends Component{
       <div className="search-books-results">
         <ol className="books-grid"></ol>
       </div>
-      //showing how many of the specific books it's showing out of the total
+      {/*showing how many of the specific books it's showing out of the total*/}
       {showingBooks.length !== books.length && (
         <div className='showing-books'>
           <span>Now showing {showingBooks.length} of {books.length} total </span>
-          <button>Show all</button>
+          <button onClick={this.clearQuery}>Show all</button>
         </div>
       )}
 
