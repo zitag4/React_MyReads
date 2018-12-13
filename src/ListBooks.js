@@ -14,20 +14,23 @@ class ListBooks extends Component{
 
   }
   render() {
+    //object destructuring: unpacking props and state into distinct variables
+    const { books, onDeleteBook } = this.props
+    const { searchQuery } = this.state
 
     //this is the filtered array for all of the books that match the specific queries
     let showingBooks
     // if it's truthy filter out the books which match that specific pattern
-    if (this.state.searchQuery) {
+    if (searchQuery) {
       //will escapes any special character inside of query
-      const match = new RegExp(escapeRegExp(this.state.searchQuery), 'i')
+      const match = new RegExp(escapeRegExp(searchQuery), 'i')
       // filter the books where the name matches with regular expression and pass to showingBooks
-      showingBooks = this.props.books.filter( (book) => match.test(book.name))
+      showingBooks = books.filter( (book) => match.test(book.name))
     } else {
       //if doesn't match: showingBooks is going to be what initially was
-      showingBooks = this.props.books
+      showingBooks = books
     }
-    //Sorting books in alphabetical order 
+    //Sorting books in alphabetical order
     showingBooks.sort(sortBy('name'))
 
     return (
@@ -39,7 +42,7 @@ class ListBooks extends Component{
           <input type="text"
           placeholder="Search by title or author"
           //in Value: The value of this input field has to be what this.state.searchQuery is
-          value={this.state.searchQuery}
+          value={searchQuery}
           //in onChange: Whenever the input field changes update the searchQuery
           onChange={ (event) => this.updateSearchQuery(event.target.value) }
           />
@@ -70,7 +73,7 @@ class ListBooks extends Component{
                 </select>
                 {/*Invoke onDeleteBook when the button is clicked on
                 //iterating over whit specific book which is comming from .mop function*/}
-                <button onClick={ () => this.props.onDeleteBook(book) } className='book-remove'>
+                <button onClick={ () => onDeleteBook(book) } className='book-remove'>
                   Remove
                 </button>
               </div>
