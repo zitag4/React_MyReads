@@ -58,7 +58,7 @@ body, .app {
   bottom: 25px;
 }
 
-.open-search button {
+.search-book {
   display: block;
   width: 50px;
   height: 50px;
