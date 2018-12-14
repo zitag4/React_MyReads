@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import { Link } from 'react-router-dom'
 
 class ListBooks extends Component{
   state = {
@@ -13,7 +14,7 @@ class ListBooks extends Component{
     this.setState({ searchQuery: query.trim() })
   }
 
-  //reseting searchQuery which re-renders the app 
+  //reseting searchQuery which re-renders the app
   clearQuery = () => {
     this.setState({searchQuery: ''})
   }
@@ -51,6 +52,10 @@ class ListBooks extends Component{
           //in onChange: Whenever the input field changes update the searchQuery
           onChange={ (event) => this.updateSearchQuery(event.target.value) }
           />
+          {/*Link to search page*/}
+          <div className="open-search">
+            <Link className='search-book' to='/search'>Add book</Link>
+          </div>
         </div>
 
       </div>
