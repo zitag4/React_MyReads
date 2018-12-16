@@ -3,16 +3,69 @@ import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component{
   state = {
-    searchQuery: ''
+    sQuery: '',
+    showingBooks: []
   }
 
   //updating the searchQuery state
   updateSearchQuery = (query) => {
-    this.setState({ searchQuery: query.trim() })
+
+    this.setState({ sQuery: query.trim() })
+
+
+
+    if (this.state.sQuery) {
+
+
+      BooksAPI.search(this.state.sQuery).then( searchResult => {
+        if(searchResult !== '')
+          this.setState({ showingBooks: searchResult })
+        else
+          this.setState({ showingBooks: []  })
+                console.log('d'+searchResult);
+      }).catch(console.log('error'))
+    }
+   else
+      this.setState({ showingBooks: [] })
   }
+
+
+  /*= (query) => {
+    //object destructuring: unpacking props and state into distinct variables
+    const { books, onDeleteBook } = this.props
+    const { searchQuery, showingBooks } = this.state
+
+    // if it's truthy filter out the books which match that specific pattern
+    if (searchQuery) {
+      //will escapes any special character inside of query
+      //const match = new RegExp(escapeRegExp(searchQuery), 'i')
+      // filter the books where the name matches with regular expression and pass to showingBooks
+      //showingBooks = books.filter( (book) => match.test(book.title))
+      BooksAPI.search(searchQuery).then( function (searchResult) {
+        if (!searchResult) {
+            this.setState( {showingBooks: []})
+        } else {
+            this.setState( {showingBooks: searchResult })
+        }
+
+        console.log(showingBooks);
+        console.log(books);
+      }
+
+      )
+    } else {
+      // showingBooks is going to be what initially was
+    this.setState( {showingBooks: books })
+    }
+  //  console.log(showingBooks);
+    //Sorting books in alphabetical order
+  //  showingBooks.sort(sortBy('name'))
+
+}*/
 
   //reseting searchQuery which re-renders the app
   clearQuery = () => {
@@ -20,24 +73,8 @@ class ListBooks extends Component{
   }
 
   render() {
-    //object destructuring: unpacking props and state into distinct variables
     const { books, onDeleteBook } = this.props
     const { searchQuery } = this.state
-
-    //this is the filtered array for all of the books that match the specific queries
-    let showingBooks
-    // if it's truthy filter out the books which match that specific pattern
-    if (searchQuery) {
-      //will escapes any special character inside of query
-      const match = new RegExp(escapeRegExp(searchQuery), 'i')
-      // filter the books where the name matches with regular expression and pass to showingBooks
-      showingBooks = books.filter( (book) => match.test(book.name))
-    } else {
-      //if doesn't match: showingBooks is going to be what initially was
-      showingBooks = books
-    }
-    //Sorting books in alphabetical order
-    showingBooks.sort(sortBy('name'))
 
     return (
   <div className='app'>
@@ -52,6 +89,7 @@ class ListBooks extends Component{
           //in onChange: Whenever the input field changes update the searchQuery
           onChange={ (event) => this.updateSearchQuery(event.target.value) }
           />
+
           {/*Link to search page*/}
           <div className="open-search">
             <Link className='search-book' to='/search'>Add book</Link>
@@ -59,13 +97,14 @@ class ListBooks extends Component{
         </div>
 
       </div>
+              {console.log("div " + this.state.showingBooks)}
       <div className="search-books-results">
         <ol className="books-grid"></ol>
       </div>
       {/*showing how many of the specific books it's showing out of the total*/}
-      {showingBooks.length !== books.length && (
+      {this.state.showingBooks.length !== books.length && (
         <div className='showing-books'>
-          <span>Now showing {showingBooks.length} of {books.length} total </span>
+          <span>Now showing {this.state.showingBooks.length} of {books.length} total </span>
           <button onClick={this.clearQuery}>Show all</button>
         </div>
       )}
@@ -74,8 +113,8 @@ class ListBooks extends Component{
 
 
       <ol className='list-books'>
-      {/*map through 'showingBooks' array and list the book's name*/}
-        {showingBooks.map( (book) => (
+      {/*map through 'this.state.showingBooks' array and list the book's name*/}
+        {this.state.showingBooks.map( (book) => (
           <li key={book.id} className='list-book-item'>
           {/*Creating the list items (books)*/}
           <div className="book">
@@ -96,8 +135,8 @@ class ListBooks extends Component{
                 </button>
               </div>
             </div>
-            <div className="book-title">To Kill a Mockingbird</div>
-            <div className="book-authors">Harper Lee</div>
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
           </div>
 
 
