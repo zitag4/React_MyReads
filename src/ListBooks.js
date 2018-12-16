@@ -7,31 +7,32 @@ import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component{
   state = {
-    sQuery: '',
-    showingBooks: []
+    searchQuery: '',
+    showingBooks: [],
+    books: []
   }
 
   //updating the searchQuery state
   updateSearchQuery = (query) => {
 
-    this.setState({ sQuery: query.trim() })
+    this.setState({ searchQuery: query })
 
+    if (query) {
+      BooksAPI.search(query).then( searchResult => {
 
-
-    if (this.state.sQuery) {
-
-
-      BooksAPI.search(this.state.sQuery).then( searchResult => {
-        if(searchResult !== '')
+        if(searchResult.length)
           this.setState({ showingBooks: searchResult })
         else
           this.setState({ showingBooks: []  })
-                console.log('d'+searchResult);
-      }).catch(console.log('error'))
-    }
-   else
-      this.setState({ showingBooks: [] })
+
+        }).catch(data => { this.setState({ showingBooks: []  })
+                            console.log('error'+ data)
+                          })
+                }
+                else
+                this.setState({ showingBooks: this.props.books  })
   }
+
 
 
   /*= (query) => {
