@@ -94,7 +94,20 @@ class ListBooks extends Component{
       </div>
               {console.log("div " + this.state.showingBooks)}
       <div className="search-books-results">
-        <ol className="books-grid"></ol>
+        <ol className="books-grid">
+        {/*map through 'this.state.showingBooks' array and list the book's name*/}
+          {this.state.showingBooks.map( (book) => (
+            <li key={book.id} className='list-book-item'>
+            {/*Creating the list items (books)*/}
+                <Book
+                  authors={ book.authors }
+                  title={ book.title }
+                  imageLinks={ book.imageLinks }
+                />
+            </li>
+          ))}
+        </ol>
+
       </div>
       {/*showing how many of the specific books it's showing out of the total*/}
       {this.state.showingBooks.length !== books.length && (
@@ -107,18 +120,7 @@ class ListBooks extends Component{
     </div>
 
 
-      <ol className='list-books'>
-      {/*map through 'this.state.showingBooks' array and list the book's name*/}
-        {this.state.showingBooks.map( (book) => (
-          <li key={book.id} className='list-book-item'>
-          {/*Creating the list items (books)*/}
-              <Book
-                authors={ book.authors }
-                title={ book.title }
-              />
-          </li>
-        ))}
-      </ol>
+
     </div>
     )
   }
