@@ -29,12 +29,10 @@ class BooksApp extends React.Component {
     }))
   }
   shelfUpdate(book, shelf) {
-    console.log('book'+book)
-    console.log('shelf'+shelf)
     BooksAPI.update(book, shelf).then( () => {
       BooksAPI.getAll().then( (books) => {
-       this.setState({ books })
-     }).catch((data) => console.log('error'+ data ))
+        this.setState({ books })
+    }).catch((data) => console.log('error'+ data ))
     }).catch((data) => console.log('error'+ data ))
   //  if(this.props.onShelfUpdate)
   //  this.props.onShelfUpdate(values)

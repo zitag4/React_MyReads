@@ -103,7 +103,7 @@ class ListBooks extends Component{
                   authors={ book.authors }
                   title={ book.title }
                   imageLinks={ book.imageLinks }
-                  shelfUpdate={this.props.shelfUpdate}
+                  onShelfUpdate={this.props.onShelfUpdate}
                 />
             </li>
           ))}
