@@ -8,14 +8,6 @@ import { Link } from 'react-router-dom'
 class BookShelf extends Component{
   render() {
 
-
-
-    console.log('ko'+this.props.books);
-    if(this.props.books) {
-      let x=this.props.books.filter( book => book.shelf = 'currentlyReading')
-      console.log('x'+x)
-    }
-
     return (
 
 
@@ -30,10 +22,13 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       {this.props.books.filter( book => book.shelf === 'currentlyReading').map(
-                        book => <Book
+                        book => <Book key={book.id}
+                        id={ book.id}
                         authors={ book.authors }
                         title={ book.title }
                         imageLinks={ book.imageLinks }
+                        shelfUpdate={this.props.shelfUpdate}
+                        shelf={this.props.shelf}
                         />
                       )}
                     </ol>
@@ -44,10 +39,13 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {this.props.books.filter( book => book.shelf === 'wantToRead').map(
-                      book => <Book
-                      uthors={ book.authors }
+                      book => <Book key={book.id}
+                      id={ book.id}
+                      authors={ book.authors }
                       title={ book.title }
                       imageLinks={ book.imageLinks }
+                      shelfUpdate={this.props.shelfUpdate}
+                      shelf={this.props.shelf}
                       />
                     )}
                     </ol>
@@ -58,10 +56,13 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {this.props.books.filter( book => book.shelf === 'read').map(
-                      book => <Book
-                      uthors={ book.authors }
+                      book => <Book key={book.id}
+                    id={ book.id}
+                      authors={ book.authors }
                       title={ book.title }
                       imageLinks={ book.imageLinks }
+                      shelfUpdate={this.props.shelfUpdate}
+                      shelf={this.props.shelf}
                       />
                     )}
                     </ol>

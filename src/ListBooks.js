@@ -7,8 +7,7 @@ import * as BooksAPI from './BooksAPI'
 class ListBooks extends Component{
   state = {
     searchQuery: '',
-    showingBooks: [],
-    books: []
+    showingBooks: []
   }
 
   //updating the searchQuery state
@@ -100,9 +99,11 @@ class ListBooks extends Component{
             <li key={book.id} className='list-book-item'>
             {/*Creating the list items (books)*/}
                 <Book
+                  id={ book.id}
                   authors={ book.authors }
                   title={ book.title }
                   imageLinks={ book.imageLinks }
+                  shelfUpdate={this.props.shelfUpdate}
                 />
             </li>
           ))}
