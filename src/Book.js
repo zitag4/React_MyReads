@@ -18,8 +18,9 @@ class Book extends Component {
           <div className="book-shelf-changer">
 
             <select
-                    value={this.shelf}
-                    onChange={ (event) => this.props.onShelfUpdate(this.props, event.target.value) }>
+                    value={this.props.shelf}
+                    onChange={ (event) => this.props.onShelfUpdate(this.props, event.target.value) }
+                    >
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -29,7 +30,7 @@ class Book extends Component {
           </div>
         </div>
       <div className="book-title">{this.props.title}</div>
-      <div className="book-authors">{this.props.authors.map( (author) => <p>{author}</p>)}</div>
+      <div className="book-authors">{this.props.authors ? this.props.authors.map( (author) => <p>{author}</p>) : this.props.authors}</div>
       </div>
     )
   }
