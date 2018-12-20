@@ -22,15 +22,18 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       {this.props.books.filter( book => book.shelf === 'currentlyReading').map(
-                        book => <Book key={book.id}
+                        book => (
+                        <Book key={book.id}
                         id={ book.id}
                         authors={ book.authors }
                         title={ book.title }
                         imageLinks={ book.imageLinks }
                         onShelfUpdate={this.props.onShelfUpdate}
                         shelf={book.shelf}
-                        />
-                      )}
+                        ></Book>
+
+
+                      ))}
                     </ol>
                   </div>
                 </div>
@@ -39,15 +42,17 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {this.props.books.filter( book => book.shelf === 'wantToRead').map(
-                      book => <Book key={book.id}
+                      book => (
+                      <Book key={book.id}
                       id={ book.id}
                       authors={ book.authors }
                       title={ book.title }
                       imageLinks={ book.imageLinks }
                       onShelfUpdate={this.props.onShelfUpdate}
                       shelf={book.shelf}
-                      />
-                    )}
+                      ></Book>
+
+                    ))}
                     </ol>
                   </div>
                 </div>
@@ -56,15 +61,17 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {this.props.books.filter( book => book.shelf === 'read').map(
-                      book => <Book key={book.id}
+                      book =>(
+                      <Book key={book.id}
                     id={ book.id}
                       authors={ book.authors }
                       title={ book.title }
                       imageLinks={ book.imageLinks }
                       onShelfUpdate={this.props.onShelfUpdate}
                       shelf={book.shelf}
-                      />
-                    )}
+                      ></Book>
+
+                    ))}
                     </ol>
                   </div>
                 </div>
