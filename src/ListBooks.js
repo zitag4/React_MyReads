@@ -17,18 +17,16 @@ class ListBooks extends Component{
 
     if (query) {
       BooksAPI.search(query).then( searchResult => {
-
-        if(searchResult.length)
+        if (searchResult.length)
           this.setState({ showingBooks: searchResult })
         else
           this.setState({ showingBooks: []  })
-
         }).catch(data => { this.setState({ showingBooks: []  })
                             console.log('error'+ data)
                           })
                 }
                 else
-                this.setState({ showingBooks: this.props.books  })
+                this.setState({ showingBooks: []  })
   }
 
 
@@ -96,14 +94,20 @@ class ListBooks extends Component{
         <ol className="books-grid">
         {/*map through 'this.state.showingBooks' array and list the book's name*/}
           {this.state.showingBooks.map( (book) => (
+
             <li key={book.id} className='list-book-item'>
-            {/*Creating the list items (books)*/}
+            {/*Creating the list items (books)*/
+              this.props.books.forEach( (mybook) => {
+                if (book.id === mybook.id)
+                  book.shelf = mybook.shelf
+              })}
                 <Book
                   id={ book.id}
                   authors={ book.authors }
                   title={ book.title }
                   imageLinks={ book.imageLinks }
                   onShelfUpdate={this.props.onShelfUpdate}
+                  shelf={!book.shelf ? 'none' : book.shelf}
                 />
             </li>
           ))}

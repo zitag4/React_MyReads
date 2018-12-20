@@ -28,7 +28,7 @@ class BookShelf extends Component{
                         title={ book.title }
                         imageLinks={ book.imageLinks }
                         onShelfUpdate={this.props.onShelfUpdate}
-                        shelf={this.props.shelf}
+                        shelf={book.shelf}
                         />
                       )}
                     </ol>
@@ -45,7 +45,7 @@ class BookShelf extends Component{
                       title={ book.title }
                       imageLinks={ book.imageLinks }
                       onShelfUpdate={this.props.onShelfUpdate}
-                      shelf={this.props.shelf}
+                      shelf={book.shelf}
                       />
                     )}
                     </ol>
@@ -62,7 +62,7 @@ class BookShelf extends Component{
                       title={ book.title }
                       imageLinks={ book.imageLinks }
                       onShelfUpdate={this.props.onShelfUpdate}
-                      shelf={this.props.shelf}
+                      shelf={book.shelf}
                       />
                     )}
                     </ol>
